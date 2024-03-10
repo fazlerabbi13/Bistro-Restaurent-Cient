@@ -8,6 +8,8 @@ import Menu from "../pages/menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
 import Login from "../pages/Home/Login/Login";
 import SignUp from "../pages/Home/SignUp/SignUp";
+import PrivateRoute from "./PrivetRoute";
+
 
 export const router = createBrowserRouter([
     {
@@ -20,11 +22,12 @@ export const router = createBrowserRouter([
             },
             {
                 path:'menu',
-                element:<Menu></Menu>
+                element:<PrivateRoute><Menu></Menu></PrivateRoute>
             },
             {
                 path:'order/:category',
                 element:<Order></Order>
+                
             },
             {
                 path:'login',
