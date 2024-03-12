@@ -18,7 +18,7 @@ const Navber = () => {
         <li><NavLink to='/order/salad'>Order Food</NavLink></li>
         <li><NavLink to='/signup'>Sign Up</NavLink></li>
         <li>
-            <Link>
+            <Link to='/dashboard/cart'>
 
                 <button className="btn">
                     <FaShoppingCart className="text-2xl" />
