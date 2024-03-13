@@ -4,7 +4,9 @@ import { AuthContext } from "../../../Provider/Authprovider";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxioxPublic from "../../../hook/useAxioxPublic";
 const SignUp = () => {
+    const axiosPublic = useAxioxPublic();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate()
     const {
@@ -22,18 +24,27 @@ const SignUp = () => {
                 console.log(user);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('user profile info updated')
-                        reset();
-                        Swal.fire({
-                            title: 'User Sign Up Successful.',
-                            showClass: {
-                                popup: 'animate__animated animate__fadeInDown'
-                            },
-                            hideClass: {
-                                popup: 'animate__animated animate__fadeOutUp'
-                            }
-                        });
-                        navigate('/')
+                        const userInfo = {
+                            name:data.name,
+                            email:data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        title: 'User Sign Up Successful.',
+                                        showClass: {
+                                            popup: 'animate__animated animate__fadeInDown'
+                                        },
+                                        hideClass: {
+                                            popup: 'animate__animated animate__fadeOutUp'
+                                        }
+                                    });
+                                    navigate('/')
+                                }
+                            })
+
                     })
                     .catch(error => {
                         console.log(error)
@@ -100,7 +111,6 @@ const SignUp = () => {
                             </div>
                         </form>
                         <p><small>Already have an account <Link to="/login">Login</Link></small></p>
-
                     </div>
                 </div>
             </div>
