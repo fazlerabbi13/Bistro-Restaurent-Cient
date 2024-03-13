@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxioxPublic from "../../../hook/useAxioxPublic";
+import SocialLogin from "../../../components/SocialLogin/SocialLogin";
 const SignUp = () => {
     const axiosPublic = useAxioxPublic();
     const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -110,7 +111,11 @@ const SignUp = () => {
                                 <button className="btn btn-primary">Sign Up</button>
                             </div>
                         </form>
-                        <p><small>Already have an account <Link to="/login">Login</Link></small></p>
+                        <p className='text-xl p-5'>Already have an account? please<small className='text-blue-500'> <Link to="/login">Login</Link></small></p>
+
+                                <div className="mx-auto mb-5">
+                                <SocialLogin></SocialLogin>
+                                </div>
                     </div>
                 </div>
             </div>

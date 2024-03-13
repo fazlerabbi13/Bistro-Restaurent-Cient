@@ -3,13 +3,14 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { AuthContext } from '../../../Provider/Authprovider';
 import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import SocialLogin from '../../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
 
 
     const [disabled, setDisabled] = useState(true);
 
-    const { signIn } = useContext(AuthContext)
+    const { signIn, googleLogin } = useContext(AuthContext)
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -58,6 +59,8 @@ const Login = () => {
 
     }
 
+    
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -90,10 +93,14 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='text-xl p-5'>if you are not registered.please register?<small className='text-blue-500'> <Link to="/signup">SignUp</Link></small></p>
+                    <div className="mx-auto mb-5">
+                        <SocialLogin></SocialLogin>
+                    </div>
                 </div>
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Login now!</h1>
                     <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+
                 </div>
 
             </div>
